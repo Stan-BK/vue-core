@@ -1,0 +1,19 @@
+{
+  "name": "@vue/realize-utils",
+  "version": "1.0.0",
+  "main": "index.js",
+  "types": "dist/realize-utils.d.ts",
+  "files": [
+    "dist",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "Some utils for helping to realize Vue",
+  "exports": {
+    "./*": "./*"
+  }
+}

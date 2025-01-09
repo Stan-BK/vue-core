@@ -15,6 +15,7 @@
     "packages/compiler-dom/src",
     "packages/runtime-core/src",
     "packages/runtime-dom/src",
+    "packages/realize-utils/src",
     "packages/reactivity/src",
     "packages/shared/src",
     "packages/global.d.ts",
