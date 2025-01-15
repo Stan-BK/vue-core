@@ -24,3 +24,31 @@ DOM-based runtime for Vue template.
 ## compiler-sfc
 
 single-file component (SFC) compiler for Vue template.
+
+## runtime-core
+
+core runtime for Vue instance.
+
+## runtime-dom
+
+DOM-based runtime for Vue instance.
+
+## server-renderer
+
+server-side rendering (SSR) for Vue instance.
+
+## shared
+
+shared utilities for Vue.
+
+# Conception
+
+## Virtual DOM
+
+Virtual DOM is a lightweight JavaScript object that represents a real DOM node. It's a lightweight and efficient way to update the UI and reduce the overhead of updating the real DOM.
+
+> VNode
+> Virtual DOM is consists by VNode. And VNode consists of three parts: tag, props, and children.
+> `runtime-core/src/vnode.ts` has the definition and implementation of VNode.
+
+> Vue use `createXXXNode` function to create VNode.

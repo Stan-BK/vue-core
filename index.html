@@ -12,13 +12,19 @@
       Vue.createApp({
         data() {
           return {
-            message: 'Hello Vue.js!',
+            message: 'Hello!',
           }
         },
         template: `
         <h1>Hello Vue.js!</h1>
-        <div>{{ message }}</div>
+        <div ref="message">{{ message }}</div>
+        <button @click="consoleVNode()">Log VNode</button>
         `,
+        methods: {
+          consoleVNode() {
+            console.log(this.$refs.message.__vnode)
+          },
+        },
       }).mount('#app')
     </script>
   </body>
