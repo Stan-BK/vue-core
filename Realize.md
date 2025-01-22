@@ -47,8 +47,77 @@ shared utilities for Vue.
 
 Virtual DOM is a lightweight JavaScript object that represents a real DOM node. It's a lightweight and efficient way to update the UI and reduce the overhead of updating the real DOM.
 
-> VNode
-> Virtual DOM is consists by VNode. And VNode consists of three parts: tag, props, and children.
-> `runtime-core/src/vnode.ts` has the definition and implementation of VNode.
+### VNode
 
-> Vue use `createXXXNode` function to create VNode.
+Virtual DOM is consists by VNode. And VNode consists of three parts: tag, props, and children.
+`runtime-core/src/vnode.ts` includes a bunch of types of VNode and implementations.
+
+> - createVNode: create a VNode from type by cloning.
+> - createElementVNode(alias for createBaseVNode): create a VNode with tag, props, and children.
+> - createTextVNode: create a VNode with text content.
+> - createCommentVNode: create a VNode with comment content.
+> - createStaticVNode: create a VNode with static content.
+
+### Benefits
+
+VNode can be created from generated code or dynamically components defination and form as a part of Virtual DOM's tree structure. And the tree structure can be updated by diff algorithm.
+
+### Example
+
+There is a example of generated code, Virtual DOM is start as a block and filled with VNode eventually:
+
+```javascript
+return function render(_ctx, _cache) {
+  with (_ctx) {
+    const {
+      createElementVNode: _createElementVNode,
+      toDisplayString: _toDisplayString,
+      resolveDynamicComponent: _resolveDynamicComponent,
+      openBlock: _openBlock,
+      createBlock: _createBlock,
+      Fragment: _Fragment,
+      createElementBlock: _createElementBlock,
+    } = _Vue
+
+    return (
+      _openBlock(),
+      _createElementBlock(
+        _Fragment,
+        null,
+        [
+          _cache[0] ||
+            (_cache[0] = _createElementVNode(
+              'h1',
+              null,
+              'Hello Vue.js!',
+              -1 /* HOISTED */,
+            )),
+          _createElementVNode(
+            'div',
+            { ref: 'message' },
+            _toDisplayString(message),
+            513 /* TEXT, NEED_PATCH */,
+          ),
+          _createElementVNode(
+            'button',
+            {
+              onClick: $event => consoleVNode(),
+            },
+            'Log VNode',
+            8 /* PROPS */,
+            _hoisted_1,
+          ),
+          (_openBlock(),
+          _createBlock(
+            _resolveDynamicComponent('MyComponent'),
+            { ref: 'myComponent' },
+            null,
+            512 /* NEED_PATCH */,
+          )),
+        ],
+        64 /* STABLE_FRAGMENT */,
+      )
+    )
+  }
+}
+```

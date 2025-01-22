@@ -9,20 +9,44 @@
   <body>
     <div id="app"></div>
     <script>
+      const { h, ref } = Vue
+      const MyComponent = Vue.defineComponent(
+        () => {
+          return () =>
+            h(
+              'h2',
+              {
+                onclick: function () {
+                  console.log(this.__vnode)
+                },
+              },
+              'This is a custom component!',
+            )
+        },
+        {
+          name: 'MyComponent',
+        },
+      )
       Vue.createApp({
+        components: {
+          MyComponent,
+        },
         data() {
+          const message = ref('Hello!!!')
           return {
-            message: 'Hello!',
+            message,
           }
         },
         template: `
         <h1>Hello Vue.js!</h1>
-        <div ref="message">{{ message }}</div>
+        <div ref="message" ref="MM">{{ message }}</div>
         <button @click="consoleVNode()">Log VNode</button>
+        <component ref="myComponent" is="MyComponent" />
         `,
         methods: {
           consoleVNode() {
             console.log(this.$refs.message.__vnode)
+            console.log(this.$refs.myComponent)
           },
         },
       }).mount('#app')
