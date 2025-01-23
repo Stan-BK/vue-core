@@ -121,3 +121,19 @@ return function render(_ctx, _cache) {
   }
 }
 ```
+
+## Reactivity
+
+Reactivity is a core concept of Vue. It's a mechanism that allows Vue to track data changes and update the view accordingly.
+
+### Ref
+
+`Ref` is a special type of object that allows us to get a reference to a DOM node or a component instance. It's a way to get a direct access to the underlying component or element.
+
+> `RefImpl` is a class that implements the `Ref` interface. It's a wrapper around a value that can be accessed and mutated.
+
+> Since a ref object is a reactive target to trigger effects (such as `watch` or `computed`) when its value changes. This mechanism bases on `double link`.
+
+### Effect
+
+[https://excalidraw.com/#json=_Y7FghmUvi7Q7y6yO31cL,DsmzFjg_hiW7qtdSIaHrQA]
